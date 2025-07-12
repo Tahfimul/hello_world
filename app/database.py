@@ -1,5 +1,5 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
+from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base, relationship
 
 engine = create_engine('sqlite:///./app/items.db')
 db_session = scoped_session(sessionmaker(autocommit=False, 

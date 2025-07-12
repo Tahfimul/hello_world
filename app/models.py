@@ -1,12 +1,26 @@
-from sqlalchemy import Column, Integer, String
-from app.database import Base
+from app import database as db
 
-class Item(Base):
+class Professional(db.Base):
+    __tablename__ = 'professional'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True)
+    email = db.Column(db.String, unique=True)
+    password = db.Column(db.String(128), unique=True)
+    items = db.relationship('Item', backref='professional')
+    def __init__(self, name=None, email=None, password=None):
+        self.name = name
+        self.email = email
+        self.password = password
+
+    def __repr__(self):
+        return f'<Professional {self.name}!r>'
+
+class Item(db.Base):
     __tablename__ = 'items'
-    id = Column(Integer, primary_key=True)
-    name = Column(String, unique=True)
-    price = Column(Integer, unique=True)
-
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True)
+    price = db.Column(db.Integer, unique=True)
+    professional_id = db.Column(db.Integer, db.ForeignKey('professional.id'))
     def __init__(self, name=None, price=None):
         self.name = name
         self.price = price
