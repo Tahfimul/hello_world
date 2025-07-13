@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}
+Activate Account
+{% endblock%}
+
+{% block content %}
+	
+<div class="container">
+
+	<form method="POST" class="form-register bd-green-100">
+		<h1>Please activate your account</h1>
+		<br>
+		{{ form.first_name.label() }}
+		{{ form.first_name(class="form-control", placeholder="First Name")}}
+
+		{{ form.last_name.label() }}
+		{{ form.last_name(class="form-control", placeholder="Last Name")}}
+
+		{{ form.email_address.label() }}
+		{{ form.email_address(class="form-control", placeholder="Email Address")}}
+
+		{{ form.phone_number.label() }}
+		{{ form.phone_number(class="form-control", placeholder="Phone Number")}}
+
+
+		<br>
+
+		{{form.activate_submit_btn(class="btn btn-lg btn-block bd-green-100")}}
+	</form>
+	
+</div>
+
+{% endblock %}
+
